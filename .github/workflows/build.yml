@@ -34,7 +34,7 @@ jobs:
 
           # Search for any log or txt files generated after the build process
           echo "Searching for error logs..."
-          find . -name "*.log" -o -name "*.txt" | while read file; do
+          find /home/runner/.npm/_logs/ -name "*.log" -o -name "*.txt" | while read file; do
             echo "Found log file: $file"
             echo "Displaying contents of $file:"
             cat "$file"
