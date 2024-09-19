@@ -34,7 +34,7 @@ jobs:
       # Upload artifacts (optional, if you want to keep the installers as part of the GitHub workflow)
       - name: Upload Artifacts
         if: success()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: electron-app-build
           path: dist/  # Upload the dist folder containing installers
