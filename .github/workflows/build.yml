@@ -3,10 +3,10 @@ name: Build Electron App
 on:
   push:
     branches:
-      - main  # Trigger build on push to the main branch
+      - main
   pull_request:
     branches:
-      - main  # Trigger build on pull requests to the main branch
+      - main
 
 jobs:
   build:
@@ -14,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]  # Builds for Linux, Windows, macOS
+        os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
       - name: Checkout repository
@@ -30,22 +30,13 @@ jobs:
 
       - name: Build Electron app
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}  # Pass GitHub token as an environment variable
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           npm run build --loglevel verbose
 
-          # Search for any log or txt files generated after the build process
-          echo "Searching for error logs..."
-          find /home/runner/.npm/_logs/ -name "*.log" -o -name "*.txt" | while read file; do
-            echo "Found log file: $file"
-            echo "Displaying contents of $file:"
-            cat "$file"
-          done
-
-      # Upload artifacts (optional, if you want to keep the installers as part of the GitHub workflow)
       - name: Upload Artifacts
         if: success()
         uses: actions/upload-artifact@v3
         with:
           name: electron-app-build
-          path: dist/  # Upload the dist folder containing installers
+          path: dist/ 
