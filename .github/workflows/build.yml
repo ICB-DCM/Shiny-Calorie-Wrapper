@@ -1,0 +1,40 @@
+name: Build Electron App
+
+on:
+  push:
+    branches:
+      - main  # Trigger build on push to the main branch
+  pull_request:
+    branches:
+      - main  # Trigger build on pull requests to the main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]  # Builds for Linux, Windows, macOS
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Electron app
+        run: npm run build
+
+      # Upload artifacts (optional, if you want to keep the installers as part of the GitHub workflow)
+      - name: Upload Artifacts
+        if: success()
+        uses: actions/upload-artifact@v2
+        with:
+          name: electron-app-build
+          path: dist/  # Upload the dist folder containing installers
