@@ -3,8 +3,72 @@ const { exec } = require('child_process');
 const sudo = require('sudo-prompt');
 const Docker = require('dockerode');
 const fs = require('fs');
+const os = require('os');
 const https = require('https');
 const path = require('path');
+
+function startDockerDesktop() {
+  const platform = os.platform();
+
+  switch (platform) {
+    case 'darwin': // macOS
+      startDockerMacOS();
+      break;
+    case 'win32': // Windows
+      startDockerWindows();
+      break;
+    case 'linux': // Linux
+      startDockerLinux();
+      break;
+    default:
+      console.log('Unsupported platform. Unable to start Docker Desktop.');
+  }
+}
+
+// macOS: Start Docker Desktop
+function startDockerMacOS() {
+  const command = 'open -a Docker'; // Command to start Docker Desktop on macOS
+
+  // Run the command with sudo
+  exec(`osascript -e 'do shell script "${command}" with administrator privileges'`, (error, stdout, stderr) => {
+    if (error) {
+      console.error('Failed to start Docker Desktop on macOS:', stderr || error.message);
+      return;
+    }
+    console.log('Docker Desktop started on macOS.');
+  });
+}
+
+// Windows: Start Docker Desktop
+function startDockerWindows() {
+  const command = `"C:\\Program Files\\Docker\\Docker\\Docker Desktop.exe"`;
+
+  // Run the command with elevated privileges using PowerShell
+  const elevatedCommand = `powershell -Command "Start-Process '${command}' -Verb RunAs"`;
+
+  exec(elevatedCommand, (error, stdout, stderr) => {
+    if (error) {
+      console.error('Failed to start Docker Desktop on Windows:', stderr || error.message);
+      return;
+    }
+    console.log('Docker Desktop started on Windows.');
+  });
+}
+
+// Linux: Start Docker Daemon
+function startDockerLinux() {
+  const command = 'systemctl start docker';
+
+  // Run the command with sudo
+  exec(`sudo ${command}`, (error, stdout, stderr) => {
+    if (error) {
+      console.error('Failed to start Docker on Linux:', stderr || error.message);
+      return;
+    }
+    console.log('Docker daemon started on Linux.');
+  });
+}
+
 
 // Initialize Docker SDK
 const docker = new Docker();
@@ -164,19 +228,72 @@ function downloadDockerInstallerMac() {
   });
 }
 
+    // Function to check Docker status
+function checkDockerStatus() {
+  // Determine the operating system
+  const platform = os.platform();
+
+  // Command to check Docker status
+  const dockerInfoCommand = 'docker info';
+
+  // Execute the command
+  exec(dockerInfoCommand, (error, stdout, stderr) => {
+    if (error) {
+      //console.error('Docker is not running or not installed:', error.message);
+      showDockerNotRunningMessage(platform);
+
+    // If Docker is not found, prompt to download and install Docker
+    const response = dialog.showMessageBoxSync({
+      type: 'error',
+      buttons: ['Yes', 'Cancel'],
+      message: 'Docker daemon is not running. Start daemon?'
+    });
+
+    if (response === 0) {
+       console.log("starting docker daemon")
+      // Download Docker based on the OS platform
+      if (process.platform === 'win32') {
+         startDockerDesktop()
+      } else if (process.platform === 'darwin') {
+         startDockerDesktop()
+      } else {
+         startDockerDesktop()
+      }
+    } else {
+      app.quit(); // Quit the app if the user cancels
+    }
+    }
+
+    // If the command runs successfully
+    console.log('Docker is running:', stdout);
+  });
+}
+
+// Show a message if Docker is not running
+function showDockerNotRunningMessage(platform) {
+  switch (platform) {
+    case 'darwin':
+      console.log('Docker is not running on macOS. Please start Docker Desktop.');
+      break;
+    case 'win32':
+      console.log('Docker is not running on Windows. Please start Docker Desktop.');
+      break;
+    case 'linux':
+      console.log('Docker is not running on Linux. Make sure the Docker daemon is running.');
+      break;
+    default:
+      console.log('Unsupported platform. Unable to determine Docker status.');
+  }
+}
+
+
 // Function to check Docker, download if necessary, and start the Shiny app using Dockerode
 async function detectDockerAndRunApp() {
   try {
     const dockerVersion = await checkDockerInstallation();
     console.log(`Docker is installed: ${dockerVersion}`);
-
-    // Pull and run the Shiny app Docker container and start on part 1338
-    await dockerPullWithPrivileges('stephanmg/caloapp');
-    await dockerRunWithPrivileges('stephanmg/caloapp', 'caloapp', { containerPort: '1338', hostPort: '1338' });
-
-    // Create the Electron window after the container is running
-    createWindow();
-
+   
+  
   } catch (error) {
     console.error('Docker not found:', error);
 
@@ -186,8 +303,6 @@ async function detectDockerAndRunApp() {
       buttons: ['Download Docker', 'Cancel'],
       message: 'Docker is not installed. Do you want to download Docker Desktop now?',
     });
-
-    /// TODO: need to catch also the error that docker desktop respectively daemon is not started by the user here
 
     if (response === 0) {
       // Download Docker based on the OS platform
@@ -206,6 +321,21 @@ async function detectDockerAndRunApp() {
       app.quit(); // Quit the app if the user cancels
     }
   }
+
+  // Check if docker daemon is running
+   try {
+    checkDockerStatus()
+
+    // Pull and run the Shiny app Docker container and start on part 1338:
+      // TODO: Repository not yet public, login for now with token
+    await dockerPullWithPrivileges('stephanmg/caloapp');
+    await dockerRunWithPrivileges('stephanmg/caloapp', 'caloapp', { containerPort: '1338', hostPort: '1338' });
+
+    // Create the Electron window after the container is running
+    createWindow();
+   } catch (error) {
+   }
+
 }
 
 // Initialize the app
