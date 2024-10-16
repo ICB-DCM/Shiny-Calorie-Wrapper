@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
-    "build": "electron-builder"
+    "start": "PYTHON=/usr/bin/python3 electron .",
+    "build": "PYTHON=/usr/bin/python3 electron-builder"
   },
   "build": {
     "appId": "com.example.myshinyapp",
@@ -29,7 +29,8 @@
   },
   "devDependencies": {
     "electron": "^13.1.7",
-    "electron-builder": "^22.11.7"
+    "electron-builder": "^25.1.8",
+    "node-gyp": "^10.2.0"
   },
   "dependencies": {
     "dockerode": "^4.0.2",

@@ -1,4 +1,4 @@
-const { app, BrowserWindow, dialog } = require('electron');
+const { app, BrowserWindow, dialog, screen } = require('electron');
 const { exec } = require('child_process');
 const sudo = require('sudo-prompt');
 const Docker = require('dockerode');
@@ -11,14 +11,16 @@ const docker = new Docker();
 
 // Function to create Electron window
 function createWindow() {
+  const primaryDisplay = screen.getPrimaryDisplay()
+  const { width, height } = primaryDisplay.workAreaSize
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: width,
+    height: height,
     webPreferences: {
       nodeIntegration: false,
     },
   });
-  mainWindow.loadURL('http://localhost:4444');
+  mainWindow.loadURL('http://localhost:1338');
 }
 
 // Function to check if Docker is installed
@@ -168,10 +170,9 @@ async function detectDockerAndRunApp() {
     const dockerVersion = await checkDockerInstallation();
     console.log(`Docker is installed: ${dockerVersion}`);
 
-    // Pull and run the Shiny app Docker container: 
-    // TODO: Needs to be replaced with real shiny calor app
-    await dockerPullWithPrivileges('selenium/standalone-chrome');
-    await dockerRunContainerWithPrivileges('selenium/standalone-chrome', 'chrome-container', { containerPort: '4444', hostPort: '4444' });
+    // Pull and run the Shiny app Docker container and start on part 1338
+    await dockerPullWithPrivileges('stephanmg/caloapp');
+    await dockerRunWithPrivileges('stephanmg/caloapp', 'caloapp', { containerPort: '1338', hostPort: '1338' });
 
     // Create the Electron window after the container is running
     createWindow();
@@ -185,6 +186,8 @@ async function detectDockerAndRunApp() {
       buttons: ['Download Docker', 'Cancel'],
       message: 'Docker is not installed. Do you want to download Docker Desktop now?',
     });
+
+    /// TODO: need to catch also the error that docker desktop respectively daemon is not started by the user here
 
     if (response === 0) {
       // Download Docker based on the OS platform
