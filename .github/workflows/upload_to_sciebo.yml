@@ -19,8 +19,8 @@ jobs:
 
       - name: Upload to Sciebo using Access Token
         env:
-          SCIEBO_ACCESS_TOKEN: ${{ secrets.SCIEBO_ACCESS_TOKEN }}
+          SCIEBO_ACCESS_TOKEN: ${{ secrets.SCIEBOTOKEN }}
         run: |
           curl -u $SCIEBO_ACCESS_TOKEN:x-oauth-basic -T my-artifact.txt \
-          "https://uni-bonn.sciebo.de/remote.php/dav/files/remote.php/webdav/files/sgrein%40uni-bonn.de/ShinyApp//my-artifact.txt"
+          "https://uni-bonn.sciebo.de/remote.php/dav/files/remote.php/webdav/files/sgrein%40uni-bonn.de/ShinyApp/my-artifact.txt"
 
