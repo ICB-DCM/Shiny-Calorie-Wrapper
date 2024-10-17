@@ -5,7 +5,7 @@
   "scripts": {
     "start": "PYTHON=/usr/bin/python3 electron .",
     "build": "PYTHON=/usr/bin/python3 electron-builder",
-    "build-linux": "electron-builder --linux snap,AppImage"
+    "build-linux": "electron-builder --linux snap AppImage"
   },
   "build": {
     "appId": "com.example.myshinyapp",
