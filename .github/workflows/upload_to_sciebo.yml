@@ -21,6 +21,5 @@ jobs:
         env:
           SCIEBO_ACCESS_TOKEN: ${{ secrets.SCIEBOTOKEN }}
         run: |
-           curl -X PUT -H "Authorizaton: Bearer $SCIEBOTOKEN" -T my-artifact.txt \
+           curl -X PUT -H "Authorizaton: Bearer $SCIEBO_ACCESS_TOKEN" -T my-artifact.txt \
           "https://uni-bonn.sciebo.de/remote.php/dav/files/remote.php/webdav/files/sgrein%40uni-bonn.de/ShinyApp/my-artifact.txt"
-
