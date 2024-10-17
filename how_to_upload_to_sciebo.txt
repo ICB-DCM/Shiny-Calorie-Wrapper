@@ -1,0 +1,17 @@
+https://wwuit-sys.zivgitlabpages.uni-muenster.de/sciebo/docs/de/apps/filedrop-curl/
+
+Manchmal fallen irgendwo automatisch Daten heraus, die man gerne in einen bestimmten Sciebo-Ordner schieben würde. Und das ganze automatisch.
+
+In dem Fall kann man den Ordner via Link teilen und eine Freigabe mit Schreibberechtigung erstellen (und Passwort).
+
+Der Link sieht dann in etwa so aus: https://uni-muenster.sciebo.de/s/XphYPtnTxc2MDm0 und das Passwort könnte geheim lauten. Dann ist der Teil hinter dem /s/ der Nutzername den man für die Webdavschnittstelle https://uni-muenster.sciebo.de/public.php/webdav/ nutzt und das Passwort das zugehörige Passwort.
+
+Man kann nun etwa mit Curl ein Request an die Webdav-Schnittstelle von Sciebo stellen und etwa eine Datei daten.csv hochladen via:
+
+curl -u "XphYPtnTxc2MDm0:geheim" -T "daten.csv" https://uni-muenster.sciebo.de/public.php/webdav/daten.csv
+
+Man beachte, dass die Webdav-Schnittstelle kein Verb für Update hat (glauben wir), d.h. will man eine Datei überschreiben, muss man vorher
+
+curl -u "XphYPtnTxc2MDm0:geheim" -X DELETE https://uni-muenster.sciebo.de/public.php/webdav/daten.csv
+
+absenden.
