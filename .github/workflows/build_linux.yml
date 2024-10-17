@@ -33,7 +33,6 @@ jobs:
 
       - name: Build Electron app
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
           SCIEBO_ACCESS_TOKEN: ${{ secrets.PASSWORD_SCIEBO_SHARE }}
           SCIEBO_SHARE_NAME: ${{ secrets.SCIEBO_SHARE_NAME }}
         run: |
