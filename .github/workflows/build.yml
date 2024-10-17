@@ -44,7 +44,7 @@ jobs:
         run: |
           curl -v -u "$SCIEBO_SHARE_NAME:$SCIEBO_ACCESS_TOKEN" -T dist/MyElectronShinyApp-1.0.0-arm64.dmg https://uni-bonn.sciebo.de/public.php/webdav/MyElectronShinyApp-1.0.0-arm64.dmg
 
-       
+## Used previously to upload to github artifacts
 #      - name: Upload Artifacts
 #        if: success()
 #        uses: actions/upload-artifact@v3
