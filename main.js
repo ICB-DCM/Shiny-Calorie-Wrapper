@@ -331,9 +331,9 @@ async function detectDockerAndRunApp() {
     checkDockerStatus()
 
     // Pull and run the Shiny app Docker container and start on port 1338
-    // TODO: Repository not yet public: Make repository public to pull from it
-    await dockerPullWithPrivileges('stephanmg/caloapp');
-    await dockerRunWithPrivileges('stephanmg/caloapp', 'caloapp', { containerPort: '1338', hostPort: '1338' });
+    // TODO: Repository not yet public: Make repository public to pull from it: For testing, start the app locally with Rscript startapp.R in the corresponding repository
+    // await dockerPullWithPrivileges('stephanmg/caloapp');
+    // await dockerRunWithPrivileges('stephanmg/caloapp', 'caloapp', { containerPort: '1338', hostPort: '1338' });
 
     // Create the Electron window after the container is running
     createWindow();
