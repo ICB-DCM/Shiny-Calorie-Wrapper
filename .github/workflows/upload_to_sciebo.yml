@@ -1,0 +1,26 @@
+name: Upload to Sciebo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build artifact
+        run: |
+          # Your build steps here
+          echo "Hello World!" > my-artifact.txt
+
+      - name: Upload to Sciebo using Access Token
+        env:
+          SCIEBO_ACCESS_TOKEN: ${{ secrets.SCIEBO_ACCESS_TOKEN }}
+        run: |
+          curl -u $SCIEBO_ACCESS_TOKEN:x-oauth-basic -T my-artifact.txt \
+          "https://uni-bonn.sciebo.de/remote.php/dav/files/remote.php/webdav/files/sgrein%40uni-bonn.de/ShinyApp//my-artifact.txt"
+
