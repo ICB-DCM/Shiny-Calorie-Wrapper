@@ -41,6 +41,12 @@ jobs:
         env:
           SCIEBO_ACCESS_TOKEN: ${{ secrets.PASSWORD_SCIEBO_SHARE }}
           SCIEBO_SHARE_NAME: ${{ secrets.SCIEBO_SHARE_NAME }}
+        shell: pwsh
         run: |
-           curl -u "$env:SCIEBO_SHARE_NAME:$env:SCIEBO_ACCESS_TOKEN" -Method PUT -Infile "dist\MyElectronShinyApp Setup 1.0.0.exe" -Uri "https://uni-bonn.sciebo.de/public.php/webdav/MyElectronShinyApp.exe"
+           $username = $env:SCIEBO_SHARE_NAME
+           $token = $env:SCIEBO_ACCESS_TOKEN
+           curl -u "$username:$token" -Method PUT `
+            -Infile "dist\MyElectronShinyApp Setup 1.0.0.exe" `
+            -Uri "https://uni-bonn.sciebo.de/public.php/webdav/MyElectronShinyApp.exe"
+
 
