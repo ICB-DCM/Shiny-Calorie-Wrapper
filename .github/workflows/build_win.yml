@@ -45,6 +45,7 @@ jobs:
         run: |
            $username = $env:SCIEBO_SHARE_NAME
            $token = $env:SCIEBO_ACCESS_TOKEN
+           curl --version
            curl -u "${username}:${token}" -Method PUT -Infile "dist\MyElectronShinyApp Setup 1.0.0.exe" -Uri "https://uni-bonn.sciebo.de/public.php/webdav/MyElectronShinyApp.exe"
 
 
