@@ -46,5 +46,5 @@ jobs:
           SCIEBO_SHARE_NAME: ${{ secrets.SCIEBO_SHARE_NAME }}
         run: |
           curl -v -u "$SCIEBO_SHARE_NAME:$SCIEBO_ACCESS_TOKEN" -T dist/MyElectronShinyApp-1.0.0.AppImage https://uni-bonn.sciebo.de/public.php/webdav/MyElectronShinyApp-1.0.0-amd64.AppImage
-          curl -v -u "$SCIEBO_SHARE_NAME:$SCIEBO_ACCESS_TOKEN" -T dist/MyElectronShinyApp-1.0.0.snap https://uni-bonn.sciebo.de/public.php/webdav/MyElectronShinyApp-1.0.0-amd64.snap
+          curl -v -u "$SCIEBO_SHARE_NAME:$SCIEBO_ACCESS_TOKEN" -T dist/my-electron-shiny-app_1.0.0_amd64.snap https://uni-bonn.sciebo.de/public.php/webdav/MyElectronShinyApp-1.0.0-amd64.snap
 
