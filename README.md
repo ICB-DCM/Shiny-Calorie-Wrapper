@@ -11,3 +11,8 @@ It makes use of auto-install of Docker, and pulls the corresponding CALOR app ve
 ## Downloads
 
 Installers for Windows, Linux and OSX are found here: https://uni-bonn.sciebo.de/s/0qDhG2Bu1VNkRli
+
+## Notes
+
+Currently only installers for the latest development version from branch `with_metadata_sheet` of the CALOR app are available and named as version 1.0.0.
+Versions based on tags have to be integrated, see issue #3.
