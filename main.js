@@ -81,8 +81,9 @@ function createWindow() {
     width: width,
     height: height,
     webPreferences: {
-      nodeIntegration: false,
+      nodeIntegration: true,
     },
+    icon: path.join(__dirname, 'assets', 'icon_16x16.png'),
   });
   mainWindow.loadURL('http://localhost:1338')
 }
@@ -192,7 +193,7 @@ function downloadDockerInstallerWindows() {
         dialog.showMessageBoxSync({
           type: 'info',
           buttons: ['OK'],
-          message: `Docker Desktop installer downloaded to ${installerPath}. Please run the installer.`,
+          message: `Docker Desktop installer downloaded to ${installerPath}. Please run the installer, then re-start the CALOR app.`,
         });
       });
     });
@@ -218,7 +219,7 @@ function downloadDockerInstallerMac() {
         dialog.showMessageBoxSync({
           type: 'info',
           buttons: ['OK'],
-          message: `Docker installer downloaded to ${installerPath}. Please run the installer.`,
+          message: `Docker installer downloaded to ${installerPath}. Please run the installer, then re-start the CALOR app.`,
         });
       });
     });
@@ -326,22 +327,27 @@ async function detectDockerAndRunApp() {
     }
   }
 
-  // Check if docker daemon is running
+   // Check if docker daemon is running
    try {
-    checkDockerStatus()
-    // TODO: Repository not yet public: Make repository public to pull from it
-    // For testing and deevlopment, start the app locally with Rscript startapp.R from the calorimetry repository
-    
-    // Pull and run the Shiny app Docker container and start on port 1338
-    // await dockerPullWithPrivileges('stephanmg/caloapp');
-    // await dockerRunWithPrivileges('stephanmg/caloapp', 'caloapp', { containerPort: '1338', hostPort: '1338' });
+      checkDockerStatus()
+      // TODO: Repository not yet public: Make repository public to pull from it
+      // For testing and deevlopment, start the app locally with Rscript startapp.R from the calorimetry repository
+      
+      // Pull and run the Shiny app Docker container and start on port 1338
+      // await dockerPullWithPrivileges('stephanmg/caloapp');
+      // await dockerRunWithPrivileges('stephanmg/caloapp', 'caloapp', { containerPort: '1338', hostPort: '1338' });
 
-    // Create the Electron window after the container is running
-    createWindow();
+     // Create the Electron window after the container is running
+     app.whenReady().then(() => {
+       // Set the Dock icon on macOS
+       if (process.platform === 'darwin') {
+          app.dock.setIcon(path.join(__dirname, 'assets', 'icon_512x512.png'));
+       }
+       createWindow();
+     });
    } catch (error) {
       app.quit()
    }
-
 }
 
 // Initialize the app
