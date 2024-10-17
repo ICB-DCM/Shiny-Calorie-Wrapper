@@ -103,7 +103,7 @@ function checkDockerInstallation() {
 // Function to run the Docker container using elevated privileges
 function dockerRunWithPrivileges(imageName, containerName, hostPort, containerPort, withPrivileges) {
   return new Promise((resolve, reject) => {
-    const command = `docker run -d -p ${hostPort}:${containerPort} --name ${containerName} ${imageName}`;
+    const command = `docker run -d -p ${hostPort}:${containerPort} --platform linux/amd64 --name ${containerName} ${imageName}`;
     const options = {
       name: 'MyElectronApp',
     };
@@ -124,7 +124,7 @@ function dockerRunWithPrivileges(imageName, containerName, hostPort, containerPo
 
 function dockerPullWithPrivileges(imageName, withPrivileges) {
   return new Promise((resolve, reject) => {
-    const command = `docker pull ${imageName}`;
+    const command = `docker pull --platform linux/amd64 ${imageName}`;
     const options = {
       name: 'MyElectronApp',  // This name appears in the prompt dialog
     };

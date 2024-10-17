@@ -4,7 +4,9 @@
   "main": "main.js",
   "scripts": {
     "start": "PYTHON=/usr/bin/python3 electron .",
-    "build": "PYTHON=/usr/bin/python3 electron-builder"
+    "build": "PYTHON=/usr/bin/python3 electron-builder",
+    "build-linux": "electron-builder --linux snap AppImage",
+    "build-win": "electron-builder --win nsis"
   },
   "build": {
     "appId": "com.example.myshinyapp",
