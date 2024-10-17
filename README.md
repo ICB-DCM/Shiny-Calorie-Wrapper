@@ -10,7 +10,7 @@ It makes use of auto-install of Docker, and pulls the corresponding CALOR app ve
 
 ## Downloads
 
-Installers for Windows, Linux and OSX are found here: https://uni-bonn.sciebo.de/s/0qDhG2Bu1VNkRli
+One-click installers for Windows, Linux & OSX are found here: https://uni-bonn.sciebo.de/s/0qDhG2Bu1VNkRli
 
 ## Notes
 
