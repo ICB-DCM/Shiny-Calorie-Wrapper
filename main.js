@@ -84,7 +84,7 @@ function createWindow() {
       nodeIntegration: false,
     },
   });
-  mainWindow.loadURL('http://localhost:1338');
+  mainWindow.loadURL('http://localhost:1338')
 }
 
 // Function to check if Docker is installed
@@ -326,8 +326,8 @@ async function detectDockerAndRunApp() {
    try {
     checkDockerStatus()
 
-    // Pull and run the Shiny app Docker container and start on part 1338:
-      // TODO: Repository not yet public, login for now with token
+    // Pull and run the Shiny app Docker container and start on port 1338
+    // TODO: Repository not yet public: Make repository public to pull from it
     await dockerPullWithPrivileges('stephanmg/caloapp');
     await dockerRunWithPrivileges('stephanmg/caloapp', 'caloapp', { containerPort: '1338', hostPort: '1338' });
 
