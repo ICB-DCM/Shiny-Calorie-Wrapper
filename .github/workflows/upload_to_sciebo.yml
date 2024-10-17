@@ -16,7 +16,6 @@ jobs:
         run: |
           # Your build steps here
           echo "Hello World!" > my-artifact.txt
-
       - name: Upload to Sciebo using Access Token
         env:
           SCIEBO_ACCESS_TOKEN: ${{ secrets.SCIEBOTOKEN }}
