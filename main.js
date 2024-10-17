@@ -101,14 +101,16 @@ function checkDockerInstallation() {
 }
 
 // Function to run the Docker container using elevated privileges
-function dockerRunWithPrivileges(imageName, containerName, hostPort, containerPort) {
+function dockerRunWithPrivileges(imageName, containerName, hostPort, containerPort, withPrivileges) {
   return new Promise((resolve, reject) => {
     const command = `docker run -d -p ${hostPort}:${containerPort} --name ${containerName} ${imageName}`;
     const options = {
       name: 'MyElectronApp',
     };
 
-    sudo.exec(command, options, (error, stdout, stderr) => {
+     const executeCommand = withPrivileges ? sudo.exec : exec;
+
+   executeCommand(command, options, (error, stdout, stderr) => {
       if (error) {
         console.error('Error running Docker container:', error);
         reject(error);
@@ -120,15 +122,17 @@ function dockerRunWithPrivileges(imageName, containerName, hostPort, containerPo
   });
 }
 
-function dockerPullWithPrivileges(imageName) {
+function dockerPullWithPrivileges(imageName, withPrivileges) {
   return new Promise((resolve, reject) => {
     const command = `docker pull ${imageName}`;
     const options = {
       name: 'MyElectronApp',  // This name appears in the prompt dialog
     };
 
+     const executeCommand = withPrivileges ? sudo.exec : exec;
+
     // Execute Docker pull command with sudo privileges
-    sudo.exec(command, options, (error, stdout, stderr) => {
+    executeCommand(command, options, (error, stdout, stderr) => {
       if (error) {
         console.error('Error pulling Docker image:', error);
         reject(error);
