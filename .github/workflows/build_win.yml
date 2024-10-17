@@ -1,0 +1,50 @@
+name: Build Windows
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    strategy:
+      matrix:
+        os: [windows-latest]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Snapcraft
+        run: sudo apt-get install -y snapcraft
+
+      - name: Build Electron app
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          SCIEBO_ACCESS_TOKEN: ${{ secrets.PASSWORD_SCIEBO_SHARE }}
+          SCIEBO_SHARE_NAME: ${{ secrets.SCIEBO_SHARE_NAME }}
+        run: |
+          npm run build-win --loglevel verbose
+
+      - name: Upload Artifacts
+        if: success()
+        env:
+          SCIEBO_ACCESS_TOKEN: ${{ secrets.PASSWORD_SCIEBO_SHARE }}
+          SCIEBO_SHARE_NAME: ${{ secrets.SCIEBO_SHARE_NAME }}
+        run: |
+          curl -v -u "$SCIEBO_SHARE_NAME:$SCIEBO_ACCESS_TOKEN" -T dist/MyElectronShinyApp-1.0.0.AppImage https://uni-bonn.sciebo.de/public.php/webdav/MyElectronShinyApp-1.0.0-amd64.AppImage
+          curl -v -u "$SCIEBO_SHARE_NAME:$SCIEBO_ACCESS_TOKEN" -T dist/my-electron-shiny-app_1.0.0_amd64.snap https://uni-bonn.sciebo.de/public.php/webdav/MyElectronShinyApp-1.0.0-amd64.snap
+
