@@ -2,7 +2,7 @@
 
 This repository contains an Electron wrapper for the Shiny CALOR app for indirect calorimetry.
 It makes use of auto-install of Docker, and pulls the corresponding CALOR app version from docker.io during one-click installation.
-The CALOR app is contained in another repository: https://github.com/stephanmg/calorimetry - The docker.io container is not yet public, since publication pending.
+The CALOR app is contained in another repository: https://github.com/stephanmg/calorimetry - The docker.io container is not yet public, since publication is pending, will be made public soon.
 
 [![Build OSX](https://github.com/stephanmg/shiny-electron-wrapper/actions/workflows/build.yml/badge.svg)](https://github.com/stephanmg/shiny-electron-wrapper/actions/workflows/build.yml)
 [![Build Linux](https://github.com/stephanmg/shiny-electron-wrapper/actions/workflows/build_linux.yml/badge.svg)](https://github.com/stephanmg/shiny-electron-wrapper/actions/workflows/build_linux.yml)
