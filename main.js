@@ -339,6 +339,7 @@ async function detectDockerAndRunApp() {
     // Create the Electron window after the container is running
     createWindow();
    } catch (error) {
+      app.quit()
    }
 
 }

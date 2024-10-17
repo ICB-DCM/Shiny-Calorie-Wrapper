@@ -15,8 +15,10 @@ One-click installers for Windows, Linux and OSX are found here: https://uni-bonn
 
 ## Notes
 
-Currently only installers for the latest development version from branch `with_metadata_sheet` of the CALOR app are available and named as version 1.0.0.
+1. Currently only installers for the latest development version from branch `with_metadata_sheet` of the CALOR app are available and named as version 1.0.0.
 Versions based on tags have to be integrated, see issue https://github.com/stephanmg/shiny-electron-wrapper/issues/3.
+
+2. When Docker Desktop not available, user will be prompted to download and install Docker Desktop. App will then need to be re-started after installation of Docker Desktop.
 
 ## Citation
 TBD
