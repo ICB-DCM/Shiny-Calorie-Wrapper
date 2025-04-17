@@ -29,7 +29,7 @@ Ubuntu:
 
 For Ubuntu 24.04 users: If the `AppImage` does not start as expected, you might need to add `--no-sandbox` and start the app by `CALOR-app.AppImage --no-sandbox`. 
 Note that the `snap` package is currently not signed, that's why one need to skip signature verification with `--dangerous`. There is no inherent harm in doing so,
-future `snap` releases will be signed.
+future `snap` releases will be signed, see issue https://github.com/stephanmg/shiny-electron-wrapper/issues/7
 
 OSX:
 - Use the compressed `dmg` image and follow standard procedures for software installation on Mac.
