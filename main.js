@@ -330,12 +330,10 @@ async function detectDockerAndRunApp() {
    // Check if docker daemon is running
    try {
       checkDockerStatus()
-      // TODO: Repository not yet public: Make repository public to pull from it
-      // For testing and deevlopment, start the app locally with Rscript startapp.R from the calorimetry repository
       
       // Pull and run the Shiny app Docker container and start on port 1338
-      // await dockerPullWithPrivileges('stephanmg/caloapp');
-      // await dockerRunWithPrivileges('stephanmg/caloapp', 'caloapp', { containerPort: '1338', hostPort: '1338' });
+      await dockerPullWithPrivileges('stephanmg/caloapp');
+      await dockerRunWithPrivileges('stephanmg/caloapp', 'caloapp', { containerPort: '1338', hostPort: '1338' });
 
      // Create the Electron window after the container is running
      app.whenReady().then(() => {
