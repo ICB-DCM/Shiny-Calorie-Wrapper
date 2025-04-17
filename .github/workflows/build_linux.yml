@@ -32,7 +32,7 @@ jobs:
         run: |
           sudo apt-get update 
           sudo apt-get install snapd
-          sudo snap isntall snapcraft --classic
+          sudo snap install snapcraft --classic
         
         
 
