@@ -1,8 +1,10 @@
-# electron-wrapper for shiny app
+# electron-wrapper for shiny apps
 
-This repository contains an Electron wrapper for the Shiny CALOR app for indirect calorimetry.
-It makes use of auto-install of Docker, and pulls the corresponding CALOR app version from docker.io during one-click installation.
-The CALOR app is contained in another repository: https://github.com/stephanmg/calorimetry - The docker.io container is not yet public, since publication is pending, will be made public soon.
+This repository contains an Electron wrapper for dockerized Shiny/R Apps, in particular scripts to create Desktop installers for the CALOR application for indirect calorimetry analysis.
+
+It makes use of automatically-installing of Docker Desktop, and pulls the corresponding CALOR app version from the https://docker.io/stephanmg/caloapp repository, resulting in an easy one-click installation for users.
+
+The CALOR app is contained in another repository: https://github.com/stephanmg/calorimetry 
 
 [![Build OSX](https://github.com/stephanmg/shiny-electron-wrapper/actions/workflows/build.yml/badge.svg)](https://github.com/stephanmg/shiny-electron-wrapper/actions/workflows/build.yml)
 [![Build Linux](https://github.com/stephanmg/shiny-electron-wrapper/actions/workflows/build_linux.yml/badge.svg)](https://github.com/stephanmg/shiny-electron-wrapper/actions/workflows/build_linux.yml)
@@ -13,9 +15,10 @@ The CALOR app is contained in another repository: https://github.com/stephanmg/c
 
 One-click installers for Windows, Linux and OSX are found here: https://uni-bonn.sciebo.de/s/0qDhG2Bu1VNkRli
 
+Current available versions:
+- 0.4.6
+- 0.4.0
+
 ## Notes
 
-1. Currently only installers for the latest development version from branch `with_metadata_sheet` of the CALOR app are available and named as version 1.0.0.
-Versions based on tags have to be integrated, see issue https://github.com/stephanmg/shiny-electron-wrapper/issues/3.
-
-2. When Docker Desktop not available, user will be prompted to download and install Docker Desktop. App will then need to be re-started after installation of Docker Desktop.
+When Docker Desktop is not available on the computer by the user, the user will be prompted to download and install Docker Desktop. The Shiny App installer will then need to be re-started after installation of Docker Desktop to finalize installation of the Shiny App.
