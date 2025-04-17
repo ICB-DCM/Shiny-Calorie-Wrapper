@@ -26,20 +26,21 @@ Ubuntu:
 - Install the `.snap` package via: `snap install --dangerous`.
 
 For Ubuntu 24.04 users: If the `AppImage` does not start as expected, you might need to add `--no-sandbox` and start the app by `CALOR-app.AppImage --no-sandbox`. 
-Note that the `snap` package is currently not signed, that's why one need to skip signature verification with `--dangerous`.
-
-Windows:
-- Use the provided universal `.exe` installer. 
+Note that the `snap` package is currently not signed, that's why one need to skip signature verification with `--dangerous`. There is no inherent harm in doing so,
+future `snap` releases will be signed.
 
 OSX:
 - Use the compressed `dmg` image and follow standard procedures for software installation on Mac.
 
+Windows:
+- Use the provided universal `.exe` installer. 
 
-When Docker Desktop is not available for the user, the user will be prompted with a dialogue
-to download and install Docker Desktop. 
+
+When docker / Docker Desktop is not available for the user, the user will be prompted with a dialogue
+to download and install the software.
 
 The Shiny App installer will then need to closed (after installation of Docker Desktop) and re-started to finalize the installation of the Shiny App.
 
 ## Notes
 
-- Currently we manually trigger a build on each tagged CALOR version, e.g. v0.4.6 or for future versions v0.4.7 - see issue [#3](https://github.com/stephanmg/shiny-electron-wrapper/issues/3)
+Currently we manually trigger a build on each tagged CALOR version, e.g. v0.4.6 or or future versions v0.4.7 - see issue [#3](https://github.com/stephanmg/shiny-electron-wrapper/issues/3).
