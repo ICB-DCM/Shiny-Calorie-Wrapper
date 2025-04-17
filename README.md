@@ -1,8 +1,10 @@
 # electron-wrapper for shiny apps
 
-This repository contains an Electron wrapper for dockerized Shiny/R Apps, in particular scripts to create Desktop installers for the CALOR application for indirect calorimetry analysis.
+This repository contains an Electron wrapper template and scripts to create Desktop installers for dockerized Shiny/R app. In particular this repository creates installers for the CALOR application for indirect calorimetry analysis.
 
-It makes use of automatically-installing of Docker Desktop, and pulls the corresponding CALOR app version from the https://docker.io/stephanmg/caloapp repository, resulting in an easy one-click installation for users.
+The workflow presented in this repository can be copied and applied to any properly dockerized Shiny/R app - not only to the CALOR app.
+
+It makes use of automatically-installing of docker / Docker Desktop (user is prompted), and pulls the corresponding app version from the https://docker.io/stephanmg/caloapp repository, resulting in an easy one-click installation procedure for users.
 
 The CALOR app is contained in another repository: https://github.com/stephanmg/calorimetry 
 
