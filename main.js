@@ -104,7 +104,7 @@ function checkDockerInstallation() {
 // Function to run the Docker container using elevated privileges
 function dockerRunWithPrivileges(imageName, containerName, hostPort, containerPort, withPrivileges) {
   return new Promise((resolve, reject) => {
-    const command = `docker run -d -p ${hostPort}:${containerPort} --platform linux/amd64 --name ${containerName} ${imageName}`;
+    const command = `docker stop ${containerName}; docker rm ${containerName}; docker run -d -p ${hostPort}:${containerPort} --platform linux/amd64 --name ${containerName} ${imageName}`;
     const options = {
       name: 'MyElectronApp',
     };

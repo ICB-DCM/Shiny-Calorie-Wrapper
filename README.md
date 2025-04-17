@@ -19,6 +19,21 @@ Current available versions:
     - 0.4.6 (Release for preprint)
     - 0.4.5 (Bugfix release)
 
+## How to run
+
+Ubuntu:
+- Start the `AppImage` by double click (Make sure the binary can be executed via `chmod +x`)
+- Install the `.snap` package via: `snap install --dangerous`.
+
+For Ubuntu 24.04 users: If the `AppImage` does not start as expected, you might need to add `--no-sandbox` and start the app by `CALOR-app.AppImage --no-sandbox`. 
+Note that the `snap` package is currently not signed, that's why one need to skip signature verification with `--dangerous`.
+
+Windows:
+- Use the provided universal `.exe` installer.
+
+OSX:
+- Extract the `dmg` image, then follow standard procedures for installation on Mac.
+
 ## Notes
 
 - When Docker Desktop is not available on the computer by the user, the user will be prompted to download and install Docker Desktop. The Shiny App installer will then need to be re-started after installation of Docker Desktop to finalize installation of the Shiny App.
