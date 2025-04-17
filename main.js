@@ -344,8 +344,8 @@ async function detectDockerAndRunApp() {
       checkDockerStatus()
       
       // Pull and run the Shiny app Docker container and start on port 1338
-      await dockerPullWithPrivileges('stephanmg/caloapp:v0.4.6');
-      await dockerRunWithPrivileges('stephanmg/caloapp:v0.4.6', 'caloapp', 1338, 1338);
+      await dockerPullWithPrivileges('stephanmg/caloapp:v0.4.6', 'true');
+      await dockerRunWithPrivileges('stephanmg/caloapp:v0.4.6', 'caloapp', 1338, 1338, 'true');
 
      // Create the Electron window after the container is running
      app.whenReady().then(() => {
