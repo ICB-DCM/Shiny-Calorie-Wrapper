@@ -235,11 +235,12 @@ function downloadDockerInstallerMac() {
 
 function waitForServer(url, callback) {
   const http = require('http')
-  const interval = setInterval(() => {
+  const interval = setInterval( () => {
     http.get(url, () => {
       clearInterval(interval);
       callback();
-    }).on('error'), () => {
+    }).on('error', () => {
+       // Server not ready yet
     });
   }, 1000);
 }
