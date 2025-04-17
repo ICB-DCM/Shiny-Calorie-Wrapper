@@ -233,6 +233,17 @@ function downloadDockerInstallerMac() {
   });
 }
 
+function waitForServer(url, callback) {
+  const http = require('http')
+  const interval = setInterval(() => {
+    http.get(url, () => {
+      clearInterval(interval);
+      callback();
+    }).on('error'), () => {
+    });
+  }, 1000);
+}
+
     // Function to check Docker status
 function checkDockerStatus() {
   // Determine the operating system
@@ -342,6 +353,10 @@ async function detectDockerAndRunApp() {
           app.dock.setIcon(path.join(__dirname, 'assets', 'icon_512x512.png'));
        }
        createWindow();
+       waitForServer('http://localhost:1338', () => {
+         mainWindow.loadURL('http://localhost:1338');
+       });
+                     
      });
    } catch (error) {
       app.quit()
