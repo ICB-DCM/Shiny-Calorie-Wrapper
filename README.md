@@ -43,4 +43,4 @@ The Shiny App installer will then need to closed (after installation of Docker D
 
 ## Notes
 
-Currently we manually trigger a build on each tagged CALOR version, e.g. v0.4.6 or or future versions v0.4.7 - see issue [#3](https://github.com/stephanmg/shiny-electron-wrapper/issues/3).
+Currently we manually trigger a build on each tagged CALOR version, e.g. v0.4.6 etc., see issue [#3](https://github.com/stephanmg/shiny-electron-wrapper/issues/3).
