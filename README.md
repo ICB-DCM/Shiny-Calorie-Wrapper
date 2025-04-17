@@ -15,8 +15,6 @@ The CALOR app is contained in another repository: https://github.com/stephanmg/c
 One-click installers for Windows, Linux and OSX are found here: https://uni-bonn.sciebo.de/s/0qDhG2Bu1VNkRli
 
 Current available versions:
-
-Minor releases
  - 0.4.0 (initial release)
     - 0.4.6 (Release for preprint)
     - 0.4.5 (Bugfix release)
