@@ -31,7 +31,7 @@ jobs:
       - name: Install Snapcraft
         run: |
           sudo apt-get update 
-          sudo apt-getinstall snapd
+          sudo apt-get install snapd
           sudo snap isntall snapcraft --classic
         
         
