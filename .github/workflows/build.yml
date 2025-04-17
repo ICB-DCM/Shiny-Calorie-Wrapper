@@ -37,7 +37,6 @@ jobs:
           npm run build --loglevel verbose
 
       - name: Upload Artifacts
-        if: success()
         env:
           SCIEBO_ACCESS_TOKEN: ${{ secrets.PASSWORD_SCIEBO_SHARE }}
           SCIEBO_SHARE_NAME: ${{ secrets.SCIEBO_SHARE_NAME }}
