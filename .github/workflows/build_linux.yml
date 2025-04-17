@@ -29,7 +29,12 @@ jobs:
         run: npm install
 
       - name: Install Snapcraft
-        run: sudo apt-get install -y snapcraft
+        run: |
+          sudo apt-get update 
+          sudo apt-getinstall snapd
+          sudo snap isntall snapcraft --classic
+        
+        
 
       - name: Build Electron app
         env:
