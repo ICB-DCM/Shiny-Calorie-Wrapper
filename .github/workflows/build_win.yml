@@ -39,8 +39,8 @@ jobs:
       - name: Upload Artifacts
         if: success()
         env:
-          SCIEBO_ACCESS_TOKEN: ${{ secrets.PASSWORD_SCIEBO_SHARE }}
-          SCIEBO_SHARE_NAME: ${{ secrets.SCIEBO_SHARE_NAME }}
+          SCIEBO_ACCESS_TOKEN: ${{ secrets.NEXTCLOUD_SCIEBO_PASSWORD }}
+          SCIEBO_SHARE_NAME: ${{ secrets.NEXTCLOUD_SCIEBO_SHARE }}
         run: |
            $username = $env:SCIEBO_SHARE_NAME
            $token = $env:SCIEBO_ACCESS_TOKEN
