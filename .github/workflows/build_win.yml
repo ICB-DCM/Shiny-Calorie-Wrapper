@@ -31,8 +31,8 @@ jobs:
       - name: Build Electron app
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          SCIEBO_ACCESS_TOKEN: ${{ secrets.PASSWORD_SCIEBO_SHARE }}
-          SCIEBO_SHARE_NAME: ${{ secrets.SCIEBO_SHARE_NAME }}
+          SCIEBO_ACCESS_TOKEN: ${{ secrets.NEXTCLOUD_SCIEBO_SHARE }}
+          NEXTCLOUD_SCIEBO_SHARE: ${{ secrets.NEXTCLOUD_SCIEBO_SHARE }}
         run: |
           npm run build-win --loglevel verbose
 
@@ -40,9 +40,9 @@ jobs:
         if: success()
         env:
           SCIEBO_ACCESS_TOKEN: ${{ secrets.NEXTCLOUD_SCIEBO_PASSWORD }}
-          SCIEBO_SHARE_NAME: ${{ secrets.NEXTCLOUD_SCIEBO_SHARE }}
+          NEXTCLOUD_SCIEBO_SHARE: ${{ secrets.NEXTCLOUD_SCIEBO_SHARE }}
         run: |
-           $username = $env:SCIEBO_SHARE_NAME
+           $username = $env:NEXTCLOUD_SCIEBO_SHARE
            $token = $env:SCIEBO_ACCESS_TOKEN
            $url = "https://uni-bonn.sciebo.de/public.php/webdav/MyElectronShinyApp-1.0.0-amd64.exe"
            curl.exe -v -u "${username}:${token}" -X PUT -T "dist\MyElectronShinyApp Setup 1.0.0.exe" $url
