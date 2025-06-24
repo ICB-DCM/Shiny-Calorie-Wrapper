@@ -14,7 +14,7 @@ The Shiny-Calorie app is contained in another repository: https://github.com/ste
 
 ## Downloads
 
-One-click installers for Windows, Linux and OSX are found here: https://uni-bonn.sciebo.de/s/0qDhG2Bu1VNkRli
+One-click installers for Windows, Linux and OSX are found here: https://uni-bonn.sciebo.de/s/cfdY7AizCjKi3Dc
 
 Current available versions:
  - 0.4.0 (initial release)
