@@ -23,7 +23,8 @@
       "target": "nsis"
     },
     "mac": {
-      "target": "dmg"
+      "target": "dmg",
+       "minimumSystemVersion": "11.0"
     },
     "linux": {
       "target": "AppImage"
