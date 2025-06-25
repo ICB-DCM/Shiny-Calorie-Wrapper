@@ -8,6 +8,7 @@ It makes use of automatically-installing of docker / Docker Desktop (user is pro
 
 The Shiny-Calorie app is contained in another repository: https://github.com/stephanmg/calorimetry 
 
+[![Stable version](https://img.shields.io/github/v/tag/stephanmg/calorimetry?sort=semver)]()
 [![Build OSX](https://github.com/stephanmg/shiny-electron-wrapper/actions/workflows/build.yml/badge.svg)](https://github.com/stephanmg/shiny-electron-wrapper/actions/workflows/build.yml)
 [![Build Linux](https://github.com/stephanmg/shiny-electron-wrapper/actions/workflows/build_linux.yml/badge.svg)](https://github.com/stephanmg/shiny-electron-wrapper/actions/workflows/build_linux.yml)
 [![Build Windows](https://github.com/stephanmg/shiny-electron-wrapper/actions/workflows/build_win.yml/badge.svg)](https://github.com/stephanmg/shiny-electron-wrapper/actions/workflows/build_win.yml)
