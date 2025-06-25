@@ -54,10 +54,8 @@ jobs:
         env:
           SCIEBO_ACCESS_TOKEN: ${{ secrets.NEXTCLOUD_SCIEBO_PASSWORD }}
           NEXTCLOUD_SCIEBO_SHARE: ${{ secrets.NEXTCLOUD_SCIEBO_SHARE }}
-          VERSION: ${{ github.ref_name }}
         run: |
            $username = $env:NEXTCLOUD_SCIEBO_SHARE
            $token = $env:SCIEBO_ACCESS_TOKEN
-           $version = $env:VERSION
            $url = "https://uni-bonn.sciebo.de/public.php/webdav/Shiny-Calorie-${version}-amd64.exe"
            curl.exe -v -u "${username}:${token}" -X PUT -T "dist\Shiny-Calorie Setup ${version}.exe" $url
