@@ -2,10 +2,10 @@ name: Build OSX
 
 on:
   push:
-     branches:
-        - main
-     tags:
-        - '*'
+    branches:
+      - main
+    tags:
+      - '*'
 
 jobs:
   build:
@@ -19,9 +19,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-           fetch-depth: 0
+          fetch-depth: 0
 
-     - name: Determine VERSION
+      - name: Determine VERSION
         run: |
           if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
             VERSION="${GITHUB_REF#refs/tags/}"
@@ -59,4 +59,4 @@ jobs:
 #        uses: actions/upload-artifact@v3
 #        with:
 #          name: electron-app-build
-#          path: dist/ 
+#          path: dist/
