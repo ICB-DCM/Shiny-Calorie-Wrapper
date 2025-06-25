@@ -2,8 +2,10 @@ name: Build Windows
 
 on:
   push:
-     tags:
-        - '*'
+    branches:
+      - 'main'
+    tags:
+      - '*'
 
 jobs:
   build:
@@ -16,6 +18,17 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Determine VERSION
+        run: |
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            VERSION="${GITHUB_REF#refs/tags/}"
+          else
+            VERSION=$(git describe --tags "$(git rev-list --tags --max-count=1)")
+          fi
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -45,5 +58,3 @@ jobs:
            $version = $env:VERSION
            $url = "https://uni-bonn.sciebo.de/public.php/webdav/Shiny-Calorie-${version}-amd64.exe"
            curl.exe -v -u "${username}:${token}" -X PUT -T "dist\Shiny-Calorie Setup ${version}.exe" $url
-
-
