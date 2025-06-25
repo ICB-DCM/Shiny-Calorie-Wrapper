@@ -44,6 +44,3 @@ to download and install the software.
 
 The Shiny App installer will then need to closed (after installation of Docker Desktop) and re-started to finalize the installation of the Shiny App.
 
-## Notes
-
-Currently we manually trigger a build on each tagged Shiny-Calorie version, e.g. v0.4.7 etc., see issue [#3](https://github.com/stephanmg/shiny-electron-wrapper/issues/3).
