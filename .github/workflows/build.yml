@@ -2,11 +2,8 @@ name: Build OSX
 
 on:
   push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+     tags:
+        - '*'
 
 jobs:
   build:
@@ -40,9 +37,9 @@ jobs:
         env:
           NEXTCLOUD_SCIEBO_PASSWORD: ${{ secrets.NEXTCLOUD_SCIEBO_PASSWORD }}
           NEXTCLOUD_SCIEBO_SHARE: ${{ secrets.NEXTCLOUD_SCIEBO_SHARE }}
-          APP_VERSION: ${{ github.ref_name }}
+          VERSION: ${{ github.ref_name }}
         run: |
-          curl -v -u "$NEXTCLOUD_SCIEBO_SHARE:$NEXTCLOUD_SCIEBO_PASSWORD" -T dist/Shiny-Calorie-${APP_VERSION#v}-arm64.dmg https://uni-bonn.sciebo.de/public.php/webdav/Shiny-Calorie-${APP_VERSION#v}-arm64.dmg
+          curl -v -u "$NEXTCLOUD_SCIEBO_SHARE:$NEXTCLOUD_SCIEBO_PASSWORD" -T dist/Shiny-Calorie-${VERSION}-arm64.dmg https://uni-bonn.sciebo.de/public.php/webdav/Shiny-Calorie-${VERSION}-arm64.dmg
 
 ## Used previously to upload to github artifacts
 #      - name: Upload Artifacts

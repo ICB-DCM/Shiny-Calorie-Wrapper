@@ -2,11 +2,8 @@ name: Build Windows
 
 on:
   push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+     tags:
+        - '*'
 
 jobs:
   build:
@@ -41,11 +38,12 @@ jobs:
         env:
           SCIEBO_ACCESS_TOKEN: ${{ secrets.NEXTCLOUD_SCIEBO_PASSWORD }}
           NEXTCLOUD_SCIEBO_SHARE: ${{ secrets.NEXTCLOUD_SCIEBO_SHARE }}
-          APP_VERSION: ${{ github.ref_name }}
+          VERSION: ${{ github.ref_name }}
         run: |
            $username = $env:NEXTCLOUD_SCIEBO_SHARE
            $token = $env:SCIEBO_ACCESS_TOKEN
-           $url = "https://uni-bonn.sciebo.de/public.php/webdav/MyElectronShinyApp-1.0.0-amd64.exe"
-           curl.exe -v -u "${username}:${token}" -X PUT -T "dist\MyElectronShinyApp Setup 1.0.0.exe" $url
+           $version = $env:VERSION
+           $url = "https://uni-bonn.sciebo.de/public.php/webdav/Shiny-Calorie-${version}-amd64.exe"
+           curl.exe -v -u "${username}:${token}" -X PUT -T "dist\Shiny-Calorie Setup {version}.exe" $url
 
 
