@@ -49,5 +49,5 @@ jobs:
           echo "VERSION:"
           echo "$VERSION"
           curl -v -u "$NEXTCLOUD_SCIEBO_SHARE:$SCIEBO_ACCESS_TOKEN" -T dist/Shiny-Calorie-$VERSION.AppImage https://uni-bonn.sciebo.de/public.php/webdav/Shiny-Calorie-$VERSION-amd64.AppImage
-          curl -v -u "$NEXTCLOUD_SCIEBO_SHARE:$SCIEBO_ACCESS_TOKEN" -T dist/Shiny-Calorie_$VERSION_amd64.snap https://uni-bonn.sciebo.de/public.php/webdav/Shiny-Calorie-$VERSION-amd64.snap
+          curl -v -u "$NEXTCLOUD_SCIEBO_SHARE:$SCIEBO_ACCESS_TOKEN" -T dist/shiny-calorie-app_${VERSION}_amd64.snap https://uni-bonn.sciebo.de/public.php/webdav/Shiny-Calorie-$VERSION-amd64.snap
 
