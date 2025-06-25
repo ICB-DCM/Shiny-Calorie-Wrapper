@@ -1,5 +1,5 @@
 {
-  "name": "my-electron-shiny-app",
+  "name": "Shiny-Calorie",
   "version": "1.0.0",
   "main": "main.js",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "build": {
     "appId": "com.example.myshinyapp",
-    "productName": "MyElectronShinyApp",
+    "productName": "Shiny-Calorie",
     "files": [
       "main.js",
       "index.html",
