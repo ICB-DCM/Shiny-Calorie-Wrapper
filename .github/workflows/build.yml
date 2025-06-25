@@ -2,6 +2,8 @@ name: Build OSX
 
 on:
   push:
+     branches:
+        - main
      tags:
         - '*'
 
@@ -16,12 +18,17 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+           fetch-depth: 0
 
-     - name: Get latest tag
+     - name: Determine VERSION
         run: |
-          git fetch --tags
-          LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
-          echo "CURRENT_TAG=$LATEST_TAG" >> $GITHUB_ENV
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            VERSION="${GITHUB_REF#refs/tags/}"
+          else
+            VERSION=$(git describe --tags "$(git rev-list --tags --max-count=1)")
+          fi
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -43,7 +50,6 @@ jobs:
         env:
           NEXTCLOUD_SCIEBO_PASSWORD: ${{ secrets.NEXTCLOUD_SCIEBO_PASSWORD }}
           NEXTCLOUD_SCIEBO_SHARE: ${{ secrets.NEXTCLOUD_SCIEBO_SHARE }}
-          VERSION: ${{ github.ref_name }}
         run: |
           curl -v -u "$NEXTCLOUD_SCIEBO_SHARE:$NEXTCLOUD_SCIEBO_PASSWORD" -T dist/Shiny-Calorie-${VERSION}-arm64.dmg https://uni-bonn.sciebo.de/public.php/webdav/Shiny-Calorie-${VERSION}-arm64.dmg
 
