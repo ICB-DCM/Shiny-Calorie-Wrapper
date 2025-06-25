@@ -9,8 +9,6 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest
-
     strategy:
       matrix:
         os: [macos-latest]
