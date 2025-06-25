@@ -44,6 +44,6 @@ jobs:
            $token = $env:SCIEBO_ACCESS_TOKEN
            $version = $env:VERSION
            $url = "https://uni-bonn.sciebo.de/public.php/webdav/Shiny-Calorie-${version}-amd64.exe"
-           curl.exe -v -u "${username}:${token}" -X PUT -T "dist\Shiny-Calorie Setup {version}.exe" $url
+           curl.exe -v -u "${username}:${token}" -X PUT -T "dist\Shiny-Calorie Setup ${version}.exe" $url
 
 
