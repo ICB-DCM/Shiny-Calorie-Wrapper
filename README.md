@@ -17,12 +17,6 @@ The Shiny-Calorie app is contained in another repository: https://github.com/ste
 
 One-click installers for Windows, Linux and OSX are found here: https://uni-bonn.sciebo.de/s/cfdY7AizCjKi3Dc
 
-Current available versions:
- - 0.4.0 (initial release)
-    - 0.4.7 (Release for preprint)
-    - 0.4.6 (Bugfix release)
-    - 0.4.5 (Bugfix release)
-
 ## How to run
 
 Ubuntu:
@@ -44,4 +38,3 @@ When docker / Docker Desktop is not available for the user, the user will be pro
 to download and install the software.
 
 The Shiny App installer will then need to closed (after installation of Docker Desktop) and re-started to finalize the installation of the Shiny App.
-
