@@ -36,7 +36,7 @@
     "node-gyp": "^10.2.0"
   },
   "dependencies": {
-    "dockerode": "^4.0.2",
+    "dockerode": "^4.0.7",
     "sudo-prompt": "^9.2.1"
   }
 }
